@@ -50,6 +50,7 @@ function getAuthToken( apikey )
             {
                 try
                 {
+                    console.log('Got auth token')
                     resolve( JSON.parse(body)["token"] );
                 }
                 catch( e )
@@ -96,6 +97,7 @@ function sendtodeployment( endpoint_url, iam_token, instance_id, payload )
             {
                 try
                 {
+                    console.log('Sent to deployment')
                     resolve( JSON.parse( body ) );
                 }
                 catch( e )
