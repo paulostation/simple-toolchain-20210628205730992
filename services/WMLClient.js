@@ -40,11 +40,11 @@ function getAuthToken( apikey )
         }
         
         request.post( "https://services-uscentral.skytap.com:13848/icp4d-api/v1/authorize", options, function( error, response, body ) {
-            if( error || ( 200 != response.statusCode ) )
+            if( error || ( response && response.statusCode && 200 != response.statusCode ) )
             {
                 console.log(error)
-                console.log( "getAuthToken:\n" + JSON.parse( body )["errorCode"] + "\n" + JSON.parse( body )["errorMessage"] + "\n" + JSON.parse( body )["errorDetails"] )
-                reject( "Status code: " + response.statusCode + "  Error: " + error );
+                console.log( "getAuthToken:\n" + body)
+                reject("Error: " + error );
             }
             else
             {
