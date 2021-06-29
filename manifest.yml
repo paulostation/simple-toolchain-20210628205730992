@@ -1,5 +1,5 @@
 applications:
-  - name: sample-frontend-app
-    random-route: true
+  - name: team-indigo-cloud-bootcamp
+    random-route: false
     memory: 128M
   
