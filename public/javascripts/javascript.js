@@ -379,3 +379,8 @@ function processresultHandler( result )
     }
 
 }
+
+
+$('button').on('click', () => {
+    console.log($('#input-zip-code').val())
+})
