@@ -87,6 +87,15 @@ function clearResultsDiv()
 function populateResultsDiv( result )
 {
     document.getElementById( 'results_spinner' ).style.display = 'none';
+
+    result = JSON.parse(result)
+    if (result && result.predictions && result.predictions.length) {
+        console.log(result.predictions[0])
+        result = `Given the input, the estimated house price is ${result.predictions[0].values[0][0]}`
+    } else {
+        result = "Invalid results from deployed model."
+    }
+    
     document.getElementById( 'results_pre' ).innerHTML = result;
 }
 
@@ -375,7 +384,7 @@ function processresultHandler( result )
     {
         var err_str = JSON.stringify( result, null, 3 );
         populateResultsDiv( err_str );
-        alert( err_str );
+        // alert( err_str );
     }
 }
 
