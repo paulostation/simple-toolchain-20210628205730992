@@ -15,7 +15,8 @@
   </head>
 
   <body>
-    <div id="instructions_div">
+    
+    <!-- <div id="instructions_div">
       <h3>Instructions</h3>
       <ol>
         <li>Draw a single digit ( 0 - 9 ) in the box using your mouse</li>
@@ -25,59 +26,83 @@
         </li>
         <li>Then click <b>Analyze</b></li>
       </ol>
-    </div>
-    <div class="bx--form">
-      <div class="bx--form-item bx--text-input-wrapper">
-        <label for="text-input-3" class="bx--label">ZIP Code</label>
-        <div class="bx--text-input__field-wrapper">
-          <input
-            id="input-zip-code"
-            type="text"
-            class="bx--text-input"
-            placeholder="Placeholder text"
-          />
+    </div> -->
+
+    <div class="bx--grid">
+      <div class="bx--row bx--mx-2"><h1>House prices estimator</h1></div>
+      <div class="bx--row">
+        <div class="bx--col">
+          <div class="bx--form">
+            <div class="bx--form-item bx--text-input-wrapper">
+              <label for="input-zip-code" class="bx--label">ZIP Code</label>
+              <div class="bx--text-input__field-wrapper">
+                <input
+                  id="input-zip-code"
+                  type="text"
+                  class="bx--text-input"
+                  placeholder="Placeholder text"
+                />
+              </div>
+            </div>
+
+            <div class="bx--form-item bx--text-input-wrapper">
+              <label for="input-land-sq-ft" class="bx--label"
+                >Land Square Feet</label
+              >
+              <div class="bx--text-input__field-wrapper">
+                <input
+                  id="input-land-sq-ft"
+                  type="text"
+                  class="bx--text-input"
+                  placeholder="Placeholder text"
+                />
+              </div>
+            </div>
+
+            <div class="bx--form-item bx--text-input-wrapper">
+              <label for="input-gross-sq-ft" class="bx--label"
+                >Gross Square Feet</label
+              >
+              <div class="bx--text-input__field-wrapper">
+                <input
+                  id="input-gross-sq-ft"
+                  type="text"
+                  class="bx--text-input"
+                  placeholder="Placeholder text"
+                />
+              </div>
+            </div>
+
+            <div class="bx--form-item bx--text-input-wrapper">
+              <label for="input-year-built" class="bx--label">Year Built</label>
+              <div class="bx--text-input__field-wrapper">
+                <input
+                  id="input-year-built"
+                  type="text"
+                  class="bx--text-input"
+                  placeholder="Placeholder text"
+                />
+              </div>
+            </div>
+
+            <button
+              id="btn-form"
+              class="bx--btn bx--btn--primary"
+              type="button"
+            >
+              Button
+            </button>
+          </div>
+          
+        </div>
+        <div class="bx--col">
+          <div id="results_div">
+            <h4>Returned classification</h4>
+            <pre id="results_pre" class="results_pre"></pre>
+            <div id="results_spinner" class="spinner"></div>
+          </div>
         </div>
       </div>
-
-      <div class="bx--form-item bx--text-input-wrapper">
-        <label for="text-input-3" class="bx--label">Land Square Feet</label>
-        <div class="bx--text-input__field-wrapper">
-          <input
-            id="input-land-sq-ft"
-            type="text"
-            class="bx--text-input"
-            placeholder="Placeholder text"
-          />
-        </div>
-      </div>
-
-      <div class="bx--form-item bx--text-input-wrapper">
-        <label for="text-input-3" class="bx--label">Gross Square Feet</label>
-        <div class="bx--text-input__field-wrapper">
-          <input
-            id="input-gross-sq-ft"
-            type="text"
-            class="bx--text-input"
-            placeholder="Placeholder text"
-          />
-        </div>
-      </div>
-
-      <div class="bx--form-item bx--text-input-wrapper">
-        <label for="text-input-3" class="bx--label">Year Built</label>
-        <div class="bx--text-input__field-wrapper">
-          <input
-            id="input-year-built"
-            type="text"
-            class="bx--text-input"
-            placeholder="Placeholder text"
-          />
-        </div>
-      </div>
-
-      <button id="btn-form" class="bx--btn bx--btn--primary" type="button">
-        Button
-      </button>
     </div>
     <!-- Put HTML snippets of components here... -->
     <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
@@ -88,13 +113,7 @@
       socket.on("processresult", processresultHandler);
 
       function sendPayloadToDeployment(payload) {
-        document.getElementById("results_spinner").style.display = "block";
-
-        var deployment_type = document.querySelector(
-          'input[name="deployment_type"]:checked'
-        ).value;
-
-        socket.emit(deployment_type, payload);
+        socket.emit("sendtomodel", payload);
       }
     </script>
   </body>

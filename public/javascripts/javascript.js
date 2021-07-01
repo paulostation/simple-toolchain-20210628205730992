@@ -377,10 +377,30 @@ function processresultHandler( result )
         populateResultsDiv( err_str );
         alert( err_str );
     }
-
 }
 
-
 $('button').on('click', () => {
-    console.log($('#input-zip-code').val())
+    
+    let payload = {
+        "input_data": [
+          {
+            "fields": [
+              "ZIP CODE",
+              "LAND SQUARE FEET",
+              "GROSS SQUARE FEET",
+              "YEAR BUILT"
+            ],
+            "values": [
+              [
+                $('#input-zip-code').val(),
+                $('#input-land-sq-ft').val(),
+                $('#input-gross-sq-ft').val(),
+                $('#input-year-built').val()
+              ]
+            ]
+          }
+        ]
+      }
+    
+    sendPayloadToDeployment(payload)
 })
